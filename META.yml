@@ -1,0 +1,12 @@
+name: Task
+version: 1.00
+abstract: The successor to Bundle:: for installing sets of modules
+author: Adam Kennedy <cpan@ali.as>
+license: unknown
+distribution_type: module
+requires:
+  perl: 5.005
+no_index:
+  directory:
+    - inc
+generated_by: Module::Install version 0.37
