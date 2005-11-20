@@ -9,6 +9,7 @@ SYNOPSIS
       abstract     ( 'Install the most common Foo modules' );
       author       ( 'Adam Kennedy <cpan@ali.as>' );
       version_from ( 'lib/Task/Foo.pm'            );
+      license      ( 'perl'                       );
       auto_install (                              );
 
       # All the things we need for Foo
