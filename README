@@ -34,41 +34,42 @@ SYNOPSIS
 
 DESCRIPTION
     The "Bundle::" namespace has long served as the CPAN's "expansion"
-    mechanism for module installation. A Bundle module contains no code in
-    itself, but serves as a way to specify an entire collection of
+    mechanism for module installation. A "Bundle::" module contains no code
+    in itself, but serves as a way to specify an entire collection of
     modules/version pairs to be installed.
 
-  The Problem with Bundle
-    Although it has done a reasonably good job, Bundle modules suffer from
-    some problems.
+  The Problem with "Bundle::"
+    Although it has done a reasonably good job, "Bundle::" modules suffer
+    from some problems.
 
-    Firstly, Bundle functionality is fairly magical. The Bundle:: magic
-    needs to be specially implemented by the CPAN client, and a Bundle dist
-    is treated differently to every other type of dist.
+    Firstly, "Bundle::" functionality is fairly magical. The "Bundle::"
+    magic needs to be specially implemented by the CPAN client, and a
+    "Bundle::" dist is treated differently to every other type of dist.
 
     It provides only static dependencies. That is, it only provides a
     specific set of dependencies, and you cannot change the list depending
     on the platform (for example, installing an extra Win32:: module if the
     bundle is being installed on Windows).
 
-    Finally, it exists only in CPAN. It is not possible to take a Bundle
+    Finally, it exists only in CPAN. It is not possible to take a "Bundle::"
     dist and just install it, because Makefile.PL files are irrelevant for
-    Bundle dists.
+    "Bundle::" dists.
 
     The irony now is that an ordinary module has far more flexible and
-    powerful dependency capabilities than Bundle distributions. And because
-    the functionality is hard-coded into the CPAN clients for the entire
-    "Bundle" namespace, moving beyond the current situation is going to mean
-    a change of namespace.
+    powerful dependency capabilities than "Bundle::" distributions. And
+    because the functionality is hard-coded into the CPAN clients for the
+    entire "Bundle::" namespace, moving beyond the current situation is
+    going to mean a change of namespace.
 
-  Requirements for a Bundle Successor
-    The "Task::" namespace (modelled off the debian packages of the same
+  Requirements for a "Bundle::" Successor
+    The "Task::" namespace (modeled off the Debian packages of the same
     name) is used to provide similar functionality to the traditional
     "Bundle::" namespace, but without the need to magic and special
     client-side support in order to have them work.
 
-    A Task:: module is implemented as a normal .pm module, with only a
-    version defined. The lib itself should NOT load in all the modules.
+    A "Task::" module is implemented as a normal .pm module, with only a
+    version defined. That .pm module itself should NOT load in all the
+    dependencies.
 
     This implementation as a module allows normal Perl tools to be able to
     load the module and check it's version to confirm you have the required
@@ -77,7 +78,7 @@ DESCRIPTION
     Instead of using a magic POD format, the dependency specification is
     implemented using the Makefile.PL, as you would for any other module.
 
-    This also means that if the Task needs to check for the existance of a
+    This also means that if the Task needs to check for the existence of a
     non-Perl application, or some other dependency, it can be done as well.
 
     And you can adapt the dependencies based on the configuration of the
@@ -88,12 +89,12 @@ DESCRIPTION
     based on platform detection code, rather than needing to apply the
     highest version in all cases.
 
-    This "normal" implementation also means that Bundle modules can be
+    This "normal" implementation also means that "Bundle::" modules can be
     created privately and no longer need to be stored in CPAN, opening up
     the bundling capability to companies and other non-public users.
 
     You should also be able to do things like encode the full dependencies
-    for you web application as a private Task:: dist and send this tarball
+    for you web application as a private "Task::" dist and send this tarball
     to the hosting company.
 
     Their admin can then use the dist to install the required modules from
@@ -101,12 +102,12 @@ DESCRIPTION
     installed than in the traditional case.
 
   Implementation
-    At this time the prefered implementation is done using Module::Install.
+    At this time the preferred implementation is done using Module::Install.
 
     Module::Install allows a much more simplified syntax, and bundles the
     required "Do What I Mean" functionality in the distribution itself.
 
-    This bundling means removes many assuptions on what may or may not be
+    This bundling removes many assumptions on what may or may not be
     installed on the the destination system, as the installation logic can
     be included in the dist and does not have to be first fetched from CPAN.
 
@@ -119,12 +120,12 @@ DESCRIPTION
     so.
 
     Please note that this Task class provides no functionality in and of
-    itself, and your Task distributions do not need to inherit from it.
+    itself, and your "Task::" distributions do not need to inherit from it.
 
     In general, you also should not need to provide any test scripts for
-    your Task:: distribution, although you may wish to add tests to validate
-    the correct installation if you wish (another option not available in
-    Bundle distributions).
+    your "Task::" distribution, although you may wish to add tests to
+    validate the correct installation if you wish (another option not
+    available in "Bundle::" distributions).
 
 SUPPORT
     Bugs (or really, spelling mistakes) should be reported via the CPAN bug
@@ -135,10 +136,10 @@ SUPPORT
     For other issues, contact the author.
 
 AUTHOR
-    Adam Kennedy <cpan@ali.as>, <http://ali.as/>
+    Adam Kennedy <adamk@cpan.org>, <http://ali.as/>
 
 COPYRIGHT
-    Copyright 2005 Adam Kennedy. All rights reserved.
+    Copyright 2005 Adam Kennedy.
 
     This program is free software; you can redistribute it and/or modify it
     under the same terms as Perl itself.
